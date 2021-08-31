@@ -5,5 +5,5 @@ Discord Bot that gives feed about:
 
 # Instructions
 To use this bot you need to do:
-1. Change the channel in src/bot.js to your preferences
+1. Change the channel_id in src/bot.js to your preferences
 2. Change the BOT_TOKEN in .env to your bot token
