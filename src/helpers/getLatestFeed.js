@@ -1,14 +1,16 @@
-const {parseRssToJson, readFile, createFile} = require('../../helpers')
+const {parseRssToJson} = require('./parseRssToJson')
+const {createFile} = require('./createFile')
+const {readFile} = require('./readFile')
 
-exports.getLatestFeed = async () => {
-    const rssData = await parseRssToJson('https://www.game3rb.com/feed/rss')
+exports.getLatestFeed = async (url_feed, file_name) => {
+    const rssData = await parseRssToJson(url_feed)
     const feed = rssData.items
     if(feed){
-        const data = await readFile('last_update.json')
+        const data = await readFile(file_name)
         if(data.last_date != feed[0].isoDate){
             const lastIndex = feed.findIndex(e => e.isoDate == data.last_date)
             const newestFeed = feed.slice(0, lastIndex)
-            await createFile('last_update.json', {last_date: feed[0].isoDate})
+            await createFile(file_name, {last_date: feed[0].isoDate})
             
             return newestFeed.sort(function(a,b){
                 return new Date(a.isoDate) - new Date(b.isoDate);

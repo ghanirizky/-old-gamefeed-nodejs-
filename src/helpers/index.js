@@ -1,13 +1,11 @@
-const {parseRssToJson} = require('./parseRssToJson')
-const {createFile} = require('./createFile')
-const {readFile} = require('./readFile')
 const {createEmbed} = require('./createEmbed')
 const {getGameDetail} = require('./getGameDetail')
+const {getLatestFeed} = require('./getLatestFeed')
+const {createEmbedFreeGames} = require('./createEmbedFreeGames')
 
 module.exports = {
-    parseRssToJson,
-    createFile,
-    readFile,
     createEmbed,
-    getGameDetail
+    getGameDetail,
+    getLatestFeed,
+    createEmbedFreeGames
 }
