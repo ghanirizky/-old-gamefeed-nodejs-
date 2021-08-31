@@ -4,7 +4,7 @@ const {URL_FEED_GAME3RB, FILE_GAME3RB} = require('../../common/constant')
 exports.createMessage = async (channel) => {
     const data = await getLatestFeed(URL_FEED_GAME3RB, FILE_GAME3RB)
     console.log(`Checking [${URL_FEED_GAME3RB}] feed...`)
-    
+    console.log("New Feed: ", data.length)
     if(data.length){
         for(const item of data){
             const gameDetail = getGameDetail(item.content)
