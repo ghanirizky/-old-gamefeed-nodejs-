@@ -10,12 +10,10 @@ exports.getLatestFeed = async (url_feed, file_name) => {
         if(data.last_date != feed[0].isoDate){
             let lastIndex = feed.findIndex(e => e.isoDate == data.last_date)
             if(!lastIndex){
-                lastIndex = feed.length
+                lastIndex = feed.length - 1
             }
             const newestFeed = feed.slice(0, lastIndex)
             await createFile(file_name, {last_date: feed[0].isoDate})
-
-            
             
             return newestFeed.sort(function(a,b){
                 return new Date(a.isoDate) - new Date(b.isoDate);
