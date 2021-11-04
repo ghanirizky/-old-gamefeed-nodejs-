@@ -11,3 +11,6 @@ exports.FILE_GAME3RB = 'last_update.json'
 exports.URL_FEED_FREEGAMES = 'https://steamcommunity.com/groups/freegamesfinders/rss/'
 exports.FILE_FREEGAMES = 'last_update_fgames.json'
 exports.LIVECOIN_KEY = process.env.LIVECOIN_KEY
+
+exports.URL_CRYPTO = "https://www.livecoinwatch.com"
+exports.FILE_CRYPTO_LIST = "crypto_list.json"

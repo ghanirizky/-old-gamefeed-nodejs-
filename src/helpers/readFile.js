@@ -6,7 +6,6 @@ exports.readFile = async(file_name) => {
 
     let rawdata = await fs.readFileSync(`${PATH_FILE}/${file_name}`);
     let data = JSON.parse(rawdata);
-    console.log(data, "<< DATA LAST_UPDATE")
 
     return data
 }

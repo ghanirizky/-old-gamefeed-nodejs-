@@ -1,24 +1,39 @@
 const { MessageEmbed } = require('discord.js');
-var formatter = new Intl.NumberFormat('en-US', {
-	style: 'currency',
-	currency: 'USD',
-  
-	//minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-	// maximumFractionDigits: 0
-});
 
-exports.createEmbedCryptoList = (data, no) => {
-	let exampleEmbed = new MessageEmbed()
-	.setColor(data.color)
-	.setURL("https://www.livecoinwatch.com")
-	.addFields(
-		{ name: "Rate", value: formatter.format(data.rate)},
-		{ name: "All-time High", value: formatter.format(data.allTimeHighUSD) },
-		{ name: "Volume", value: formatter.format(data.volume) },
-		{ name: "Cap", value: formatter.format(data.cap) },
-	)
-	.setAuthor(`${no}. ${data.name} ${data.symbol ? `- ${data.symbol}` : ""}`,data.png64 ,"https://www.livecoinwatch.com")
-	.setTimestamp(new Date())
+
+const {URL_CRYPTO} = require('../common/constant')
+
+exports.createEmbedCryptoList = (data, no, curr) => {
+
+	const toCurr = new Intl.NumberFormat('en-US', {
+		style: 'currency',
+		currency: curr,
+	});
+
+	const exampleEmbed = {
+		color: data.color,
+		url: URL_CRYPTO,
+		author: {
+			name: `${no}. ${data.name} ${data.symbol ? `- ${data.symbol}` : ""}`,
+			icon_url: data.png64,
+			url: URL_CRYPTO
+		},
+		thumbnail: {
+			url: data.png64,
+		},
+		fields: [
+			{ name: "Rate", value: toCurr.format(data.rate), inline: true},
+			{ name: '\u200B', value: '\u200B', inline: true },
+			{ name: "All-time High", value: toCurr.format(data.allTimeHighUSD), inline: true},
+			{ name: "Volume", value: toCurr.format(data.volume), inline: true},
+			{ name: '\u200B', value: '\u200B', inline: true },
+			{ name: "Cap", value: toCurr.format(data.cap) , inline: true},
+			// { name: "Circulating Suply", value: toCurr.format(data.circulatingSupply), inline: true},
+			// { name: "Total Suply", value: toCurr.format(data.totalSupply) , inline: true},
+			// { name: "Max Suply", value: toCurr.format(data.maxSupply) , inline: true},
+		],
+		timestamp: new Date(),
+	};
     
     return exampleEmbed
 }

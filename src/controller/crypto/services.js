@@ -1,16 +1,10 @@
 const {createEmbedCryptoList} = require('../../helpers')
 const axios = require('axios');
+const { readFile } = require('../../helpers');
 
 exports.getList = async (channel) => {
 
-    const param = {
-        "currency": "USD",
-        "sort": "rank",
-        "order": "ascending",
-        "offset": 0,
-        "limit": 10,
-        "meta": true
-    }
+    const param = await readFile('crypto_list.json')
 
     const config = {
         method: 'post',
@@ -30,13 +24,11 @@ exports.getList = async (channel) => {
         await channel.bulkDelete(100)
 
         for(const item of data.data){
-            const embedData = createEmbedCryptoList(item, index++)
+            const embedData = createEmbedCryptoList(item, index++, param.currency)
             channel.send({ embeds: [embedData] });
         }
     }else{
         console.log(`Error`)
     }
-    console.log("======================")
-    
     return data
 }
