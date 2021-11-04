@@ -9,13 +9,9 @@ client.on('ready', async () => {
     const channelGame3rb = client.channels.cache.get('881639659577425950');
     const channelFreeGames = client.channels.cache.get('882283760215818251');
     const channelCrypto =  client.channels.cache.get('905782025565388840');
-
-    await crypto.getList(channelCrypto)
-    await freegames.createMessage(channelFreeGames)
-    await game3rb.createMessage(channelGame3rb)
     
     setInterval(async() => {
-        await freegames.createMessage(channelFreeGames)
+        await crypto.getList(channelCrypto)
         await game3rb.createMessage(channelGame3rb)
     }, 600000)
 
