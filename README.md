@@ -1,4 +1,4 @@
-# gamefeed-js
+# gamefeed-nodejs
 Discord function:
 1. Updated crack game from url feed: www.game3rb.com
 2. Free games from steam, humble bundle, epic games and other platforms.
