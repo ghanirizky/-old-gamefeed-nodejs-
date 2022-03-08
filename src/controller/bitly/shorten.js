@@ -1,4 +1,5 @@
 const {BITLY_TOKEN} = require("../../common/constant")
+const axios = require('axios')
 
 exports.shortenLink = async (link) => {
   const config = {
