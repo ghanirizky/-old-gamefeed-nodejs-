@@ -17,9 +17,11 @@ exports.shortenLink = async (link) => {
   try {
     const data = await axios(config);
 
-    return data.data.link
+    if(data.data.link) return data.data.link
+
+    return false
 
   } catch (error) {
-    return "Error";
+    return false
   }
 };

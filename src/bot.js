@@ -75,12 +75,9 @@ client.on("messageCreate", async (msg) => {
   if (msg.content.startsWith("g!shorten")) {
     const content = msg.content.split(" ")[1];
 
-    if (validUrl.isUri(content)) {
-      const shortenLink = await bitly.shortenLink(content);
-      msg.reply(`Shorten Link: ***${shortenLink}***`);
-    } else {
-      msg.reply(`***${content}*** : Invalid Link`);
-    }
+    const shortenLink = await bitly.shortenLink(content);
+    if (shortenLink) msg.reply(`Shorten Link: ***${shortenLink}***`);
+    else msg.reply(`***${content}*** : Invalid Link`);
   }
 });
 
