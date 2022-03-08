@@ -77,7 +77,7 @@ client.on("messageCreate", async (msg) => {
 
     const shortenLink = await bitly.shortenLink(content);
     if (shortenLink) msg.reply(`Shorten Link: ***${shortenLink}***`);
-    else msg.reply(`***${content}*** : Invalid Link`);
+    else msg.reply(`Invalid Link`);
   }
 });
 
