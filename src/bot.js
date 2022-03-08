@@ -1,9 +1,10 @@
 require('dotenv').config();
 const {DISCORD_BOT_TOKEN, FILE_CRYPTO_LIST} = require('./common/constant')
-const {game3rb, freegames, crypto} = require('./controller')
+const {game3rb, freegames, crypto, bitly} = require('./controller')
 const {createFile,readFile} = require('./helpers/')
 const { Client, Intents } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]});
+const validUrl = require('valid-url')
 
 
 client.on('ready', async () => {
@@ -40,7 +41,7 @@ client.on('messageCreate', async msg => {
     }
     
     //# DELETE MESSAGE COMMAND
-    else if(msg.content.startsWith("g!prune")){
+    if(msg.content.startsWith("g!prune")){
         const content = msg.content.split(" ")[1]
         if(!isNaN(content)){
             if(content > 100 || content < 0){
@@ -53,7 +54,7 @@ client.on('messageCreate', async msg => {
     }
 
     //#CURRENCY OF CRYPTOLIST
-    else if(msg.content.startsWith("g!curr")){
+    if(msg.content.startsWith("g!curr")){
         const content = msg.content.split(" ")[1]
 
         if(!content.match("IDR") && !content.match("USD")){
@@ -65,8 +66,19 @@ client.on('messageCreate', async msg => {
             await createFile(FILE_CRYPTO_LIST, data)
             msg.reply(`Success set crypto list currency to ***${content}***`)
         }
-        
     }
+
+    //SHORTEN LINK BITLY
+    if(msg.content.startsWith("g!shorten")){
+        const content = msg.content.split(" ")[1]
+
+        if(validUrl.isUri(content)){
+            msg.reply(`Shorten Link: ***${bitly.shortenLink(content)}***`)
+        }else{
+            msg.reply(`***${content}*** : Invalid Link`)
+        }
+    }
+
 });
 
 
