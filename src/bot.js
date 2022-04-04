@@ -17,19 +17,19 @@ const client = new Client({
 client.on("ready", async () => {
   console.log(`${client.user.tag} has logged in.`);
   client.user.setActivity('| g!help', { type: 'LISTENING' });
-  // const channelGame3rb = client.channels.cache.get("881639659577425950");
-  // const channelFreeGames = client.channels.cache.get("882283760215818251");
-  // const channelCrypto = client.channels.cache.get("905782025565388840");
-  // const channelCrypto2 = client.channels.cache.get("909033029412995112");
+  const channelGame3rb = client.channels.cache.get("881639659577425950");
+  const channelFreeGames = client.channels.cache.get("882283760215818251");
+  const channelCrypto = client.channels.cache.get("905782025565388840");
+  const channelCrypto2 = client.channels.cache.get("909033029412995112");
 
-  // await crypto.getList(channelCrypto);
+  await crypto.getList(channelCrypto);
 
-  // setInterval(async () => {
-  //   await crypto.getList(channelCrypto);
-  //   await crypto.getList(channelCrypto2);
-  //   await game3rb.createMessage(channelGame3rb);
-  //   // await freegames.createMessage(channelFreeGames)
-  // }, 600000);
+  setInterval(async () => {
+    await crypto.getList(channelCrypto);
+    await crypto.getList(channelCrypto2);
+    await game3rb.createMessage(channelGame3rb);
+    // await freegames.createMessage(channelFreeGames)
+  }, 600000);
 });
 
 client.on("messageCreate", async (msg) => {
