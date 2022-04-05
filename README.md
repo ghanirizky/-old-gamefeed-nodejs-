@@ -7,7 +7,5 @@ Discord function:
 5. Shorten link using bit.ly API | g!shorten
 6. Currency Converter | g!cvt
 
-# Instructions
-To use the features like this bot you need to do:
-1. Change the channel_id in src/bot.js to your preferences
-2. Change the BOT_TOKEN in .env to your bot token
+# Invite Link
+https://discord.com/api/oauth2/authorize?client_id=881249227232137236&permissions=17179995136&scope=bot
